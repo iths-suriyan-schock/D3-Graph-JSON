@@ -1,0 +1,23 @@
+{
+  "name": "D3-Graph-JSON",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iths-suriyan-schock/D3-Graph-JSON.git"
+  },
+  "keywords": [],
+  "author": "Alexander Rusiecki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iths-suriyan-schock/D3-Graph-JSON/issues"
+  },
+  "homepage": "https://github.com/iths-suriyan-schock/D3-Graph-JSON#readme",
+  "dependencies": {
+    "d3": "^5.16.0"
+  }
+}
