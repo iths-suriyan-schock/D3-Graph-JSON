@@ -41,92 +41,25 @@ const leftAxisGroup = axesGroup.append("g").attr("class", "left-axis")
 
 const barGroup = chart.append("g").attr("class", "bars")
 
-
-function renderTooltip(data){            
-    const tooltip = document.querySelector(".tooltip")
-
-    tooltip.querySelector(".name").innerText = "Name: " + data.name
-    tooltip.querySelector(".surfaceTemperature").innerText = "Surface Temperature: " + data.surfaceTemperature + " Kelvin"
-    tooltip.querySelector(".aphelion").innerText = "Aphelion: " + data.aphelion + " km"
-    tooltip.querySelector(".perihelion").innerText = "Perihelion: " + data.perihelion + " km"
-    tooltip.querySelector(".mass").innerText = "Mass: " + data.mass + " kg"
-    tooltip.querySelector(".volume").innerText = "Volume: " + data.volume + " km^3"
-
-    tooltip.classList.add("show")
-}
-function hideTooltip(){
-    const tooltip = document.querySelector(".tooltip")
-    tooltip.classList.remove("show")
-}
-function repositionTooltip(x,y){            
-    const tooltip = document.querySelector(".tooltip")
-    tooltip.style.left = x + 'px'
-    tooltip.style.top = y + 'px'
-}
-
-
 // Create an async function
-async function render(propertyName){
-    // Fetch the data
-    let planetData = await d3.json('planets.json')
-    // Process data
-    planetData = planetData.planets            
 
-    // Create the scales
-    let xScale = d3.scalePow()
-                    .domain( [1, d3.max(planetData, item => item[propertyName])])
-                    .range([0, chartWidth])
-    let yScale = d3.scaleBand()
-                    .domain(planetData.map(planet => planet.name))
-                    .range([0, chartHeight])
-
-    // Create the main axes
-    let bottomAxis = d3.axisBottom(xScale)
-                        .tickFormat(d3.format(".2s"))
-                        
-    bottomAxis(bottomAxisGroup)
-
-    let leftAxis = d3.axisLeft(yScale)
-    leftAxis(leftAxisGroup)
-    
-    // Create and configure grid lines
-    let verticalGridLines = d3.axisTop(xScale)                                
-                        .tickSize(chartHeight)
-                        .ticks(10)
-                        .tickSizeOuter(0)
-                        .tickFormat(()=>"")
-
-    verticalGridLinesGroup
-        .call(verticalGridLines)
-    gridLinesGroup.selectAll(".tick line")
-                            .attr("stroke","lightgrey")
-
-    const selection = barGroup.selectAll("rect")
-        .data(planetData)
-
-    selection                
-        .attr("width", item => xScale(item[propertyName]))
-
-    selection
-        .enter()
-        .append("rect")
-        .attr("y", item => yScale(item.name) + barSize)
-        .attr("x", 0)
-        .attr("height", barSize)
-        .attr("width", item => xScale(item[propertyName]))
-        .attr("fill", `rgb(200,50,50)`)
-        .on("mouseover", item => renderTooltip(item))
-        .on("mousemove", () => repositionTooltip(d3.event.clientX, d3.event.clientY))
-        .on("mouseleave", () => hideTooltip())
+const fetchData = async () => {
+    // Data
+    let movieData = await d3.json('./IMDB-Data.json')
+    // Data => array
+    let ninetyFiveMoviesArray = Object.entries(movieData["1995"])
+    // Map through array => get genres
+    ninetyFiveMoviesArray.map(movie => {
+        console.log(movie[1].genre);
+    })
 }
+fetchData();
 
-render("surfaceTemperature")
+// async function render(propertyName){
+//     // Fetch the data
+//     let planetData = await d3.json('planets.json')
+//     // Process data
+//     planetData = planetData.planets            
 
-document.querySelector(".dropdown").addEventListener("change", (event) => {
-    render(event.target.value);
-})
-
-
-// d3.csv("data.csv",function(movieData) {
-//     //data-code management here
-// })
+    
+// render()
