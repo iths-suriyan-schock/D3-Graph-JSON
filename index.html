@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- <button>Click me</button> -->
+        <!-- <select class="dropdown">
+            <option value="surfaceTemperature">Surface Temperature</option>
+            <option value="mass">Mass</option>
+            <option value="volume">Volume</option>
+        </select> -->
+    </div>
+    <!-- <div id="my_dataviz"></div> -->
+    <div class="tooltip">
+        <p class="name"></p>
+        <p class="perihelion"></p>
+        <p class="aphelion"></p>
+        <p class="mass"></p>
+        <p class="volume"></p>
+    </div>
+    <script src="node_modules/d3/dist/d3.min.js"></script>
+    <!-- <script src="https://d3js.org/d3-ease.v1.min.js"></script> -->
+    <!-- <script src="main.js"></script> -->
+    <!-- <script src="loadingData.js"></script> -->
+    <!-- <script src="planets.js"></script> -->
+    <!-- <script src="covid.js"></script> -->
+    <script src="lineGraph.js"></script>
+    <script src='finalproject.js'></script>
+    <style>
+        .tooltip {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background: grey;
+            display: none;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.8;
+            border-radius: 6px;
+            
+        }
+        .tooltip.show  {
+            display: block;
+        }
+
+    </style>
+</body>
+</html>
