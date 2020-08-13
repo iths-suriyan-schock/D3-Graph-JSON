@@ -1,6 +1,7 @@
 
 # dependecies
 /node_modules
+.Crawler.py
 /.pnp
 .pnp.js
 
